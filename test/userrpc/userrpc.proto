@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package userrpc;
+option go_package = "./userrpc";
+
+message StreamResp {
+  int64 code = 1;
+  string msg = 2;
+  bytes data = 3;
+}
+
+message Login {
+  string Username = 1;
+  string Password = 2;
+  string Tel = 3;
+  int64 Code = 4;
+}
+
+message UserRegister {
+  string Username = 1;
+  string Password = 2;
+  string Tel = 3;
+}
+
+service Userrpc {
+  rpc login(Login) returns (StreamResp);
+  rpc Register(UserRegister) returns (StreamResp);
+}

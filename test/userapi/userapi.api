@@ -1,0 +1,39 @@
+syntax = "v1"
+
+info(
+	title: "type title here"
+	desc: "type desc here"
+	author: "type author here"
+	email: "type email here"
+	version: "type version here"
+)
+
+type (
+	UserLogin {
+		// TODO : 用户登录
+		Username string `form:"username"`
+		Password string `form:"password"`
+		Tel      string `form:"tel"`
+		Code     int64  `form:"code"`
+	}
+	UserRegister {
+		// TODO : 用户注册
+		Username string `form:"username"`
+		Password string `form:"password"`
+		Tel      string `form:"tel"`
+	}
+)
+
+type response {
+	// TODO: 返回值
+	Code int         `json:"code"`
+	Msg  string      `json:"msg"`
+	Data interface{} `json:"data"`
+}
+
+service userapi {
+	@handler login //TODO : 用户登录
+	post /login (UserLogin) returns (response)
+	@handler Register //TODO : 用户注册
+	post /register (UserRegister) returns (response)
+}

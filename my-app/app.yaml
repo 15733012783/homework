@@ -1,0 +1,7 @@
+
+MysqlK:
+  Username: root
+  Password: root
+  Host: 127.0.0.1
+  Port: 3305
+  Mysql: 2107a

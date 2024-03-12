@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-rpc-deployment
+spec:
+  replicas: 3  # 指定副本数量为3个
+  selector:
+    matchLabels:
+      app: user-rpc  # 选择器，匹配labels中为app: my-go-app的Pod
+  template:
+    metadata:
+      labels:
+        app: user-rpc  # Pod模板的标签，用于匹配selector
+    spec:
+      containers:
+        - name: user-rpc-container
+          image: nightynight/grpc:1.0.2
+          ports:
+            - containerPort: 8882
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-rpc-service
+spec:
+  selector:
+    app: user-rpc  # 选择具有app: my-go-app标签的Pod
+  ports:
+    - protocol: TCP
+      port: 8883  # Service暴露的端口
+      targetPort: 8883  # Pod中容器的端口
+  type: NodePort  # 将Service暴露为NodePort类型
