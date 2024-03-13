@@ -6,7 +6,7 @@ COPY ./ /app
 
 WORKDIR /app
 
-EXPOSE 8083
+EXPOSE 8883
 
 RUN go mod tidy
 
